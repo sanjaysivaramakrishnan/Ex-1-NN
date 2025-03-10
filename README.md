@@ -37,11 +37,50 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```
+import pandas as pd
+import seaborn as sns
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+df = pd.read_csv(r'C:\Users\admin\Desktop\Python_jupyter\ML LEARN\Neural_networks\Datasets\Churn_Modelling.csv')
+df.head()
+### Finding Missing Values
+df.isnull().sum()
+#Handling Missing values
+# As this value doesn't contains any null values we don't want to worry about handling missing values
+# Check for duplicates
+duplicates = df.duplicated()
+duplicates
+print(f'Number of duplicates rows: {duplicates.sum()}')    
+#Detect Outliers
+df.describe()
+df.head()
+df.drop(['Surname','Geography','Gender'],axis=1,inplace=True)
+#Normalize the dataset
+Scaler = MinMaxScaler()
+df1 = pd.DataFrame(Scaler.fit_transform(df))
+df1
+X = df1.iloc[:,:-1].values
+X
+y = df1.iloc[:,-1].values
+y
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2,random_state=25)
+X_train
+X_test
+
+```
 
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+![Screenshot 2025-03-10 063914](https://github.com/user-attachments/assets/157a24b4-6693-495d-97a4-b765b5538570)
+![Screenshot 2025-03-10 063931](https://github.com/user-attachments/assets/1cb5a8f7-6f9a-4804-b5f9-0207ca68a531)
+![Screenshot 2025-03-10 063948](https://github.com/user-attachments/assets/d9207824-d6a5-4f4b-b622-c2b738eb06f2)
+![Screenshot 2025-03-10 064046](https://github.com/user-attachments/assets/ab5227cd-aa6f-46be-982c-a125a27bbaef)
+![Screenshot 2025-03-10 064113](https://github.com/user-attachments/assets/9bfb8e94-167e-43ce-8922-5f784ec2015d)
+
+![Screenshot 2025-03-10 064130](https://github.com/user-attachments/assets/2a83aad2-3460-44a4-91ac-599f274d810c)
+
 
 
 ## RESULT:
